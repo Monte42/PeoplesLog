@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     # Add all apps
     'users',
@@ -135,12 +136,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # To upload files as admin
-
-STATICFILES = [os.path.join(BASE_DIR, 'static')] # To load files from the static folder
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')] # To load files from the static folder
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # To upload files as admin
+
+
 
 MEDIA_URL = '/media/' # This line and the next are to view uploaded files
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'media')
