@@ -87,14 +87,12 @@ WSGI_APPLICATION = 'aaPeoplesLog.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        # 'ENGINE': 'django.db.backends.postgresql',
-        # 'NAME': 'ddtmctrauhdhpb',
-        # 'HOST': 'ec2-50-16-198-4.compute-1.amazonaws.com',
-        # 'PORT': 5432,
-        # 'USER': 'okuiiqeusegerd',
-        # 'PASSWORD': 'ad466ea1a697946d76299c7dfa5b75dab44c5004179408c69758f3bc4ae0b061',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'dv695ku3gdgsg',
+        'HOST': 'ec2-50-16-198-4.compute-1.amazonaws.com',
+        'PORT': 5432,
+        'USER': 'puamfnycqfmlvm',
+        'PASSWORD': 'cbba0625851f3620c5c4ee8ccf21cda89497688ff70b8f81096062b00e28b3e3',
     }
 }
 
