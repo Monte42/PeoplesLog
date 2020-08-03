@@ -24,7 +24,7 @@ SECRET_KEY = 'i(j241ucdva$a1gs+&vzbtj@0$v@y0u+$qkpt6vx@lc4nk(5fd'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['peopleslog.herokuapp.com','127.0.0.1']
 
