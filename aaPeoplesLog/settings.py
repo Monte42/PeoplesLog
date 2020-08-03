@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'i(j241ucdva$a1gs+&vzbtj@0$v@y0u+$qkpt6vx@lc4nk(5fd'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['peopleslog.herokuapp.com','127.0.0.1']
 
@@ -138,7 +138,6 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # To upload files as admin
 
 STATICFILES = [os.path.join(BASE_DIR, 'static')] # To load files from the static folder
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/' # This line and the next are to view uploaded files
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'media')
