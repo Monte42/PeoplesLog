@@ -9,7 +9,7 @@
   <div class="container">
     <h1>{{account_owner.first_name}} {{account_owner.last_name}}</h1>
     {% if account_owner.user_image %}
-      <img height="200px" width="200px" class="rounded-circle" src="{{account_owner.user_image.url}}" alt="">
+      <img height="200px" width="200px" class="rounded-circle" src="static/{{account_owner.user_image.url}}" alt="">
     {% else %}
       <img height="200px" width="200px" class="rounded-circle" src="{% static 'img/blankUser.png' %}" alt="">
     {% endif %}
