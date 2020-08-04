@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'whitenoise.runserver_nostatic',
+    # 'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     # Add all apps
     'users',
@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'about',
     # Add installed apps
     'crispy_forms', # to neatin up forms easy way
-    'django_cleanup.apps.CleanupConfig', # to auto delete files after upates
+    # 'django_cleanup.apps.CleanupConfig', # to auto delete files after upates
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -138,7 +139,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')] # To load files from the static folder
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # To upload files as admin
 
 
@@ -147,3 +149,24 @@ MEDIA_URL = '/media/' # This line and the next are to view uploaded files
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'media')
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4' # This tells crispt to use bootstrap4
+
+
+AWS_ACCESS_KEY_ID = 'AKIA25YDE5VG5Y6SO4EW'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'peopleslog1-bucket'
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+
+# <?xml version="1.0" encoding="UTF-8"?>
+# <CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+# <CORSRule>
+# <AllowedOrigin>*</AllowedOrigin>
+# <AllowedMethod>GET</AllowedMethod>
+# <AllowedMethod>POST</AllowedMethod>
+# <AllowedMethod>PUT</AllowedMethod>
+# <AllowedHeader>*</AllowedHeader>
+# </CORSRule>
+# </CORSConfiguration>
