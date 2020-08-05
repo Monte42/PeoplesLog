@@ -15,7 +15,7 @@
     <!-- HANDEL POST IMAGE -->
     {% if post.post_image %}
       <div class="text-center">
-        <img style="height:auto; width:100%;" src="/media/{{post.post_image}}" class="card-img-top" alt="...">
+        <img style="height:auto; width:100%;" src="{{post.post_image.url}}" class="card-img-top" alt="...">
       </div><br>
     {% endif %}
 
