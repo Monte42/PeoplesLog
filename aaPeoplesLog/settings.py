@@ -95,7 +95,7 @@ DATABASES = {
         'HOST': 'ec2-50-16-198-4.compute-1.amazonaws.com',
         'PORT': 5432,
         'USER': 'puamfnycqfmlvm',
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'PASSWORD': os.environ["DB_PASSWORD"],
     }
 }
 
