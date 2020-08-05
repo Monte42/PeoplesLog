@@ -152,7 +152,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'media')
 CRISPY_TEMPLATE_PACK = 'bootstrap4' # This tells crispt to use bootstrap4
 
 
-AWS_ACCESS_KEY_ID = os.environ.get('ACCESS_KEY')
+AWS_ACCESS_KEY_ID = 'AKIA25YDE5VG5Y6SO4EW'
 AWS_SECRET_ACCESS_KEY = '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'
 AWS_STORAGE_BUCKET_NAME = 'peopleslog1-bucket'
 
