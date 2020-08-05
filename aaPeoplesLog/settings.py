@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from boto.s3.connection import S3Connection
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -151,9 +152,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'media')
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4' # This tells crispt to use bootstrap4
 
-
-AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = '80AAOnyLY19jTFghRg1wOrGfEujs5GkZdNe+1Ed0'
+s3 = S3Connection(os.environ['S3_KEY'], os.environ['S3_SECRET'])
+# AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+# AWS_SECRET_ACCESS_KEY = '80AAOnyLY19jTFghRg1wOrGfEujs5GkZdNe+1Ed0'
 AWS_STORAGE_BUCKET_NAME = 'peopleslog1-bucket'
 
 AWS_S3_FILE_OVERWRITE = False
