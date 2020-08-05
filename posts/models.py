@@ -4,7 +4,7 @@ from django.db import models
 #   Posts
 # ==========
 class Post(models.Model):
-    content = models.TextField(max_length=500)
+    content = models.TextField(max_length=1000)
     post_image = models.ImageField(verbose_name='post_picture', upload_to='post_img', null=True, blank=True)
     link = models.URLField(max_length=250, blank=True, null=True)
     create_date = models.DateTimeField(auto_now_add=True)
