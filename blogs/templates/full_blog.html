@@ -8,8 +8,8 @@
   <h1>{{blog_id.title}}</h1>
   <br>
   <div class="d-flex">
-    {% if post.author.user_image %}
-      <img height="100px" width="100px" class="rounded-circle" src="{{post.author.user_image.url}}" alt="">
+    {% if blog_id.author.user_image %}
+      <img height="100px" width="100px" class="rounded-circle" src="{{blog_id.author.user_image.url}}" alt="">
     {% else %}
       <img height="100px" width="100px" class="rounded-circle" src="{% static 'img/blankUser.png' %}" alt="">
     {% endif %}&nbsp;&nbsp;&nbsp;&nbsp;
