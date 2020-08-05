@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 
 ALLOWED_HOSTS = ['peopleslog.herokuapp.com','127.0.0.1']
@@ -95,7 +95,7 @@ DATABASES = {
         'HOST': 'ec2-50-16-198-4.compute-1.amazonaws.com',
         'PORT': 5432,
         'USER': 'puamfnycqfmlvm',
-        'PASSWORD': os.environ["DB_PASSWORD"],
+        'PASSWORD': 'cbba0625851f3620c5c4ee8ccf21cda89497688ff70b8f81096062b00e28b3e3',
     }
 }
 
