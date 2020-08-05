@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'i(j241ucdva$a1gs+&vzbtj@0$v@y0u+$qkpt6vx@lc4nk(5fd'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -94,8 +94,8 @@ DATABASES = {
         'NAME': 'dv695ku3gdgsg',
         'HOST': 'ec2-50-16-198-4.compute-1.amazonaws.com',
         'PORT': 5432,
-        'USER': 'puamfnycqfmlvm',
-        'PASSWORD': 'cbba0625851f3620c5c4ee8ccf21cda89497688ff70b8f81096062b00e28b3e3',
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
     }
 }
 
@@ -152,9 +152,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'media')
 CRISPY_TEMPLATE_PACK = 'bootstrap4' # This tells crispt to use bootstrap4
 
 
-AWS_ACCESS_KEY_ID = 'AKIA25YDE5VG5Y6SO4EW'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'peopleslog1-bucket'
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
 
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
