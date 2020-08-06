@@ -28,10 +28,18 @@
   </div>
 
   <!-- Have to add footer here and add fixed-bottom to class -->
-  <footer class="fixed-bottom bg-dark text-white p-2 text-center">
+  <footer id="myFoot" class="fixed-bottom bg-dark text-white p-2 text-center">
     <div class="container">
       <p class="text-center">Website developed by</p>
       <a href="http://webgnd.com/" target="_blank">WebGround</a>
     </div>
   </footer>
+  <br><br>
+
+  <script type="text/javascript">
+    if window.innerWidth > 990:
+      var element = document.getElementById("myFoot");
+      element.classList.remove("fixed-bottom");
+  </script>
+
 {% endblock %}
