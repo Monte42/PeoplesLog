@@ -1,1 +1,1 @@
-web: gunicorn aaPeoplesLog.wsgi --log-file -
+web: gunicorn aaPeoplesLog.asgi --log-file -
