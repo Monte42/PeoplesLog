@@ -25,6 +25,7 @@ urlpatterns = [
     path('', include('blogs.urls')),
     path('', include('events.urls')),
     path('', include('about.urls')),
+    path('messages/', include('messenger.urls')),
 ]
 
 # if settings.DEBUG:

@@ -27,6 +27,7 @@ body{background-color: lightgray;}
   margin: auto;
 }
 
+
 @media screen and (max-width: 800px) {
   .user{width: 80%}
 }

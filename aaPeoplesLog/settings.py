@@ -20,10 +20,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+# SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = 'b_&rglvs90c(jg_malt^r%&82-3tx5#)^vh29o&@jh38eee+80'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+# DEBUG = False
+DEBUG = True
 
 
 ALLOWED_HOSTS = ['peopleslog.herokuapp.com','127.0.0.1']
@@ -32,6 +35,8 @@ ALLOWED_HOSTS = ['peopleslog.herokuapp.com','127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
+    'messenger',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -48,7 +53,7 @@ INSTALLED_APPS = [
     # Add installed apps
     'crispy_forms', # to neatin up forms easy way
     'django_cleanup.apps.CleanupConfig', # to auto delete files after upates
-    'storages',
+    'storages', #sbooto3 storage
 ]
 
 MIDDLEWARE = [
@@ -63,6 +68,15 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'aaPeoplesLog.urls'
+ASGI_APPLICATION = 'aaPeoplesLog.routing.application'
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
 
 TEMPLATES = [
     {

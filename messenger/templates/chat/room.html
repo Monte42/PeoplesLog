@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Chat Room{% endblock %}
+{% block content %}
+    <div class="container">
+
+      <div style="height:60vh;background-color:white;overflow:auto;" id="chat-items" class="py-2">
+        {% for msg in msgs %}
+
+          {% if msg.sender == request.user %}
+            <div class="d-flex justify-content-start m-2">
+              <!-- {% if msg.sender.user_image.url %}
+                <img class="rounded-circle" height="40px" width="40px" src="{{msg.sender.user_image.url}}" alt="">
+              {% else %}
+                <img class="rounded-circle" height="40px" width="40px" src="{% static 'img/blankUser.png' %}" alt="">
+              {% endif %} -->
+              <img class="rounded-circle" height="40px" width="40px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWeKt-doBGB9dTAii1ZQNZY8mFFueABk713A&usqp=CAU" alt="">
+              <div style="background-color:lightgreen;max-width:40%;border-radius:5px 15px 15px 15px" class="d-flex pt-1 p-2">
+                <span>{{msg}}</span>
+              </div>
+            </div>
+          {% else %}
+
+          <div class="d-flex justify-content-end mx-2">
+            <div style="background-color:lightblue;max-width:40%;border-radius:15px 5px 15px 15px" class="d-flex pt-1 p-2">
+              <span>{{msg}}</span>
+            </div>
+            <!-- {% if msg.sender.user_image.url %}
+              <img class="rounded-circle" height="40px" width="40px" src="{{msg.sender.user_image.url}}" alt="">
+            {% else %}
+              <img class="rounded-circle" height="40px" width="40px" src="{% static 'img/blankUser.png' %}" alt="">
+            {% endif %} -->
+            <img class="rounded-circle" height="40px" width="40px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWeKt-doBGB9dTAii1ZQNZY8mFFueABk713A&usqp=CAU" alt="">
+          </div>
+          {% endif %}
+
+        {% endfor %}
+      </div>
+
+      <form class="d-flex justify-content-end" onsubmit="event.preventDefault()" method="POST">
+        {% csrf_token %}
+        {{ messageForm }}
+        <button id="chat-form-submit" type="submit">Send</button>
+      </form>
+    </div>
+
+    {{ room_name|json_script:"room-name" }}
+
+    <script>
+        const roomName = JSON.parse(document.getElementById('room-name').textContent);
+
+        var loc = window.location
+        var wsStart = 'ws://'
+        if (loc.protocol == 'https:'){
+          wsStart = 'wss://'
+        }
+        const chatSocket = new WebSocket(
+            wsStart
+            + window.location.host
+            + '/ws/messages/'
+            + roomName
+            + '/'
+        );
+
+        chatSocket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+            var message = data.message
+            var sender = data.sender
+            var senderImage = data.senderImage
+            var msgBrd = document.querySelector('#chat-items');
+
+            var imgTag = document.createElement("IMG")
+            imgTag.className += "rounded-circle"
+            imgTag.src = senderImage
+
+            var spanTag = document.createElement("SPAN")
+            spanTag.innerText = message
+
+            var parentDiv = document.createElement("DIV")
+            var msgDiv = document.createElement("DIV")
+            msgDiv.className += "d-flex pt-1 p-2"
+            msgDiv.style.maxWidth = "40%"
+
+            if (sender == "{{request.user}}") {
+              parentDiv.className += "d-flex justify-content-start m-2"
+              msgDiv.style.borderRadius = "5px 15px 15px 15px"
+              msgDiv.style.backgroundColor = "lightgreen"
+              msgDiv.appendChild(spanTag)
+              parentDiv.appendChild(imgTag)
+              parentDiv.appendChild(msgDiv)
+              msgBrd.appendChild(parentDiv)
+            } else {
+              parentDiv.className += "d-flex justify-content-end m-2"
+              msgDiv.style.borderRadius = "15px 5px 15px 15px"
+              msgDiv.style.backgroundColor = "lightblue"
+              msgDiv.appendChild(spanTag)
+              parentDiv.appendChild(msgDiv)
+              parentDiv.appendChild(imgTag)
+              msgBrd.appendChild(parentDiv)
+            }
+
+        };
+
+        // chatSocket.onopen = function(e) {
+        //   console.log('open');
+        //   document.getElementById("form").addEventListener("click", function(event){
+        //     chatSocket.send(msgInput.value)
+        //     msgInput.value=''
+        //   });
+        // };
+
+        chatSocket.onclose = function(e) {
+            console.error('Chat socket closed unexpectedly', e);
+        };
+
+        // document.querySelector('#chat-message-input').focus();
+        // document.querySelector('#chat-message-input').onkeyup = function(e) {
+        //     if (e.keyCode === 13) {  // enter, return
+        //         document.querySelector('#chat-message-submit').click();
+        //     }
+        // };
+
+        document.querySelector('#chat-form-submit').onclick = function(e) {
+            const messageInputDom = document.querySelector('#id_content');
+            const message = messageInputDom.value;
+            const sender = "{{request.user}}"
+            const senderImage = "{{request.user.user_image.url}}"
+            const recip = document.querySelector('#id_recipient');
+            const recipient = recip.value;
+            chatSocket.send(JSON.stringify({
+                'message': message,
+                'sender': sender,
+                'senderImage': senderImage,
+                'recipient': recipient,
+            }));
+            messageInputDom.value = '';
+        };
+    </script>
+
+{% endblock %}

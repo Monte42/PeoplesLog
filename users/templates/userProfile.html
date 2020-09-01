@@ -16,6 +16,7 @@
     <br><br>
     <h3>Nickname: {{account_owner.username}}</h3>
     <p>Date Joined: {{account_owner.date_joined}}</p>
+    <a class="btn btn-success btn-lg" href="{% url 'chat' account_owner.id %}">Send Message</a>
     <hr>
     <br>
     <p><strong>Birth Day</strong>: {{account_owner.birth_date}}</p>

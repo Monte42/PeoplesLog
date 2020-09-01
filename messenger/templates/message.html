@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Chat{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h1>Temp Chat</h1>
+    <div class="d-flex flex-column-reverse" style="height:50vh;overflow-x:scroll;overflow-x:hidden;border:1px solid black;">
+      {% for msg in msgs %}
+        {% if msg.sender == request.user %}
+            <div class="d-flex justify-content-start">
+              <img height="30px" width="30px" class="rounded-circle" src="{{msg.sender.user_image.url}}" alt="">
+              <p class="p-3" style="background-color:gray;border-radius:5px 15px 15px 15px;">{{msg}} <span style="font-size:.5em;">{{msg.timesent}}</span></p>
+            </div>
+            <br>
+        {% else %}
+            <div class="d-flex justify-content-end">
+              <p class="p-3" style="background-color:white;border-radius:15px 5px 15px 15px;"><span style="font-size:.5em;">{{msg.timesent}}</span> {{msg}}</p>
+              <img height="30px" width="30px" class="rounded-circle" src="{{msg.sender.user_image.url}}" alt="">
+            </div>
+            <br>
+        {% endif %}
+
+
+
+      {% endfor %}
+    </div>
+    <form method="POST">
+      {% csrf_token %}
+      {{messageForm|crispy}}
+      <button type="submit" name="button">Send</button>
+    </form>
+  </div>
+{% endblock %}
