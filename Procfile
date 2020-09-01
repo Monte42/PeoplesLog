@@ -1,1 +1,1 @@
-web: daphne aaPeoplesLog.asgi:application
+daphne -p 8001 aaPeoplesLog.asgi:application
