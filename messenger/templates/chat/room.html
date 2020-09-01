@@ -46,6 +46,8 @@
 
     {{ room_name|json_script:"room-name" }}
 
+
+    <script src="{% static 'js/reconnecting-websocket.min.js' %}"></script>
     <script>
         const roomName = JSON.parse(document.getElementById('room-name').textContent);
 
@@ -54,7 +56,7 @@
         if (loc.protocol == 'https:'){
           wsStart = 'wss://'
         }
-        const chatSocket = new WebSocket(
+        const chatSocket = new ReconnectingWebSocket(
             wsStart
             + window.location.host
             + '/ws/messages/'
