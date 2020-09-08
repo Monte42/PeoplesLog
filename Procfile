@@ -1,1 +1,1 @@
-web: bin/start-nginx bundle exec unicorn -c config/unicorn.rb
+web: daphne aaPeoplesLog.asgi:application --port $PORT --bind 0.0.0.0 -v2
