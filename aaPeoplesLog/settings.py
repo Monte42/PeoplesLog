@@ -105,11 +105,11 @@ WSGI_APPLICATION = 'aaPeoplesLog.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dv695ku3gdgsg',
-        'HOST': 'ec2-50-16-198-4.compute-1.amazonaws.com',
+        'NAME': '#',
+        'HOST': '#.compute-1.amazonaws.com',
         'PORT': 5432,
-        'USER': 'puamfnycqfmlvm',
-        'PASSWORD': 'cbba0625851f3620c5c4ee8ccf21cda89497688ff70b8f81096062b00e28b3e3',
+        'USER': '#',
+        'PASSWORD': '#',
     }
 }
 
@@ -166,9 +166,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'media')
 CRISPY_TEMPLATE_PACK = 'bootstrap4' # This tells crispt to use bootstrap4
 
 
-AWS_ACCESS_KEY_ID = 'AKIA25YDE5VG5Y6SO4EW'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'peopleslog1-bucket'
+AWS_ACCESS_KEY_ID = '#'
+AWS_SECRET_ACCESS_KEY = '#'
+AWS_STORAGE_BUCKET_NAME = '#'
 
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
